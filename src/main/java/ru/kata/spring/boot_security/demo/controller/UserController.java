@@ -1,7 +1,7 @@
-package com.serdtsev.spring.boot.springbootproject.controller;
+package ru.kata.spring.boot_security.demo.controller;
 
-import com.serdtsev.spring.boot.springbootproject.entity.User;
-import com.serdtsev.spring.boot.springbootproject.service.UserService;
+import ru.kata.spring.boot_security.demo.entity.User;
+import ru.kata.spring.boot_security.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
 
     @GetMapping("/user")
     public String userHome(Principal principal, Model model) {

@@ -1,10 +1,8 @@
-package com.serdtsev.spring.boot.springbootproject.entity;
+package ru.kata.spring.boot_security.demo.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
-
-import java.io.Serializable;
 
 @Entity
 public class Role implements GrantedAuthority {
@@ -42,6 +40,7 @@ public class Role implements GrantedAuthority {
     public @Nullable String getAuthority() {
         return name;
     }
+
     @Override
     public String toString() {
         return name;

@@ -1,7 +1,6 @@
-package com.serdtsev.spring.boot.springbootproject.service;
+package ru.kata.spring.boot_security.demo.service;
 
-import com.serdtsev.spring.boot.springbootproject.entity.User;
-
+import ru.kata.spring.boot_security.demo.entity.User;
 import java.util.List;
 
 public interface UserService {
