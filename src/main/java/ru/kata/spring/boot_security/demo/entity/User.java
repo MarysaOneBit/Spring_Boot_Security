@@ -3,11 +3,10 @@ package ru.kata.spring.boot_security.demo.entity;
 import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.Entity;
 import java.util.Collection;
-
 import java.util.Set;
+
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -34,7 +33,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    Set<Role> roles;
+    private Set<Role> roles;
 
     public User() {
 
