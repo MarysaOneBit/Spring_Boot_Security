@@ -1,6 +1,7 @@
 package ru.kata.spring.boot_security.demo.entity;
 
 import javax.persistence.*;
+
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -37,7 +38,7 @@ public class Role implements GrantedAuthority {
     }
 
     @Override
-    public @Nullable String getAuthority() {
+    public String getAuthority() {
         return name;
     }
 

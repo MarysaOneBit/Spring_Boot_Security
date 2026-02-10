@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.Entity;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,16 +17,16 @@ public class User implements UserDetails {
     private int id;
     @Column(name = "name")
     private String name;
+    @Column(name = "age")
+    private Integer age;
     @Column(name = "surname")
     private String surname;
-    @Column(name = "department")
-    private String department;
-    @Column(name = "salary")
-    private int salary;
+    @Column(name = "email")
+    private String email;
     @Column(name = "password")
     private String password;
     @Column(name = "user_name")
-    private String userName;
+    private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -33,18 +34,32 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
 
     }
 
-    public User(String name, String surname, String department, int salary) {
+    public User(String name,String username,String password,Integer age, String surname, String email) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
-        this.salary = salary;
+        this.email = email;
+        this.age = age;
+        this.password = password;
+        this.username = username;
     }
+
+    public void setRoles(Set<Role> roles) {this.roles = roles;}
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String email) {this.email = email;}
+
+    public String getUserName() {return username;}
+
+    public Integer getAge() {return age;}
+
+    public void setAge(Integer age) {this.age = age;}
 
     public int getId() {
         return id;
@@ -70,22 +85,6 @@ public class User implements UserDetails {
         this.surname = surname;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -97,7 +96,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     public void setPassword(String password) {
@@ -105,7 +104,7 @@ public class User implements UserDetails {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public Set<Role> getRoles() {

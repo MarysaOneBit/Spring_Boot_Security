@@ -16,23 +16,21 @@ public class WebSecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final SuccessUserHandler loginSuccessHandler;
+    private final PasswordConfig paswordConfig;
 
     @Autowired
-    public WebSecurityConfig(UserDetailsService userDetailsService, SuccessUserHandler loginSuccessHandler) {
+    public WebSecurityConfig(UserDetailsService userDetailsService, SuccessUserHandler loginSuccessHandler, PasswordConfig paswordConfig) {
         this.userDetailsService = userDetailsService;
         this.loginSuccessHandler = loginSuccessHandler;
+        this.paswordConfig = paswordConfig;
     }
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(bCryptPasswordEncoder());
+        authProvider.setPasswordEncoder(paswordConfig.bCryptPasswordEncoder());
         return authProvider;
     }
 
